@@ -397,8 +397,9 @@ export default function Registration() {
                 ------------------------------------------ */}
                     {step === 1 && (
                         <>
-                            <InputField label="First Name" name="firstName" value={formData.firstName} error={errors.firstName} onChange={handleChange} onBlur={handleBlur} placeholder="John" />
-                            <InputField label="Last Name" name="lastName" value={formData.lastName} error={errors.lastName} onChange={handleChange} onBlur={handleBlur} placeholder="Doe" />
+                            <InputField label="First Name" name="firstName" value={formData.firstName} error={errors.firstName} onChange={handleChange} onBlur={handleBlur} placeholder="First Name" />
+                            <InputField label="Last Name" name="lastName" value={formData.lastName} error={errors.lastName} onChange={handleChange} onBlur={handleBlur} placeholder="Last Name
+                            " />
                             <InputField label="Date of Birth" type="date" name="dateOfBirth" value={formData.dateOfBirth} error={errors.dateOfBirth} onChange={handleChange} onBlur={handleBlur} />
                             <SelectField label="Category" name="category" value={formData.category} onChange={handleChange} />
                         </>
@@ -409,8 +410,8 @@ export default function Registration() {
                 ------------------------------------------ */}
                     {step === 2 && (
                         <>
-                            <InputField label="Father Name" name="fatherName" value={formData.fatherName} error={errors.fatherName} onChange={handleChange} onBlur={handleBlur} placeholder="Robert Doe" />
-                            <InputField label="Mother Name" name="motherName" value={formData.motherName} error={errors.motherName} onChange={handleChange} onBlur={handleBlur} placeholder="Jane Doe" />
+                            <InputField label="Father's Name" name="fatherName" value={formData.fatherName} error={errors.fatherName} onChange={handleChange} onBlur={handleBlur} placeholder="Father's Name" />
+                            <InputField label="Mother's Name" name="motherName" value={formData.motherName} error={errors.motherName} onChange={handleChange} onBlur={handleBlur} placeholder="Mother's Name" />
                         </>
                     )}
 
@@ -419,8 +420,8 @@ export default function Registration() {
                 ------------------------------------------ */}
                     {step === 3 && (
                         <>
-                            <InputField label="Phone Number" name="phoneNumber" value={formData.phoneNumber} error={errors.phoneNumber} onChange={handleChange} onBlur={handleBlur} placeholder="9876543210" />
-                            <InputField label="Email" name="email" type="email" value={formData.email} error={errors.email} onChange={handleChange} onBlur={handleBlur} placeholder="example@mail.com" />
+                            <InputField label="Phone Number" name="phoneNumber" value={formData.phoneNumber} error={errors.phoneNumber} onChange={handleChange} onBlur={handleBlur} placeholder="Phone Number" />
+                            <InputField label="Email" name="email" type="email" value={formData.email} error={errors.email} onChange={handleChange} onBlur={handleBlur} placeholder="Email Address" />
                         </>
                     )}
 

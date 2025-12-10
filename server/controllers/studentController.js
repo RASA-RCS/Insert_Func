@@ -1,20 +1,30 @@
-// server/controllers/studentController.js
 import Student from "../models/studentModel.js";
+import { sendRegistrationEmail } from "../services/emailService.js";
 
-/**
- * Register a new student with file uploads
- */
 export const registerStudent = async (req, res) => {
   try {
-    const { firstName, lastName, fatherName, motherName, phoneNumber, email, dateOfBirth, category } = req.body;
+    const {
+      firstName,
+      lastName,
+      fatherName,
+      motherName,
+      phoneNumber,
+      email,
+      dateOfBirth,
+      category
+    } = req.body;
+
     const files = req.files;
 
-    // Detailed file validation
     const requiredFiles = ["marksheet10", "marksheet12", "marksheetGrad", "marksheetSem", "resume"];
-    const missingFiles = requiredFiles.filter(f => !files || !files[f] || files[f].length === 0);
+    const missingFiles = requiredFiles.filter(
+      f => !files || !files[f] || files[f].length === 0
+    );
 
     if (missingFiles.length > 0) {
-      return res.status(400).json({ message: `Missing required files: ${missingFiles.join(", ")}` });
+      return res.status(400).json({
+        message: `Missing required files: ${missingFiles.join(", ")}`
+      });
     }
 
     const student = new Student({
@@ -36,7 +46,13 @@ export const registerStudent = async (req, res) => {
     });
 
     const savedStudent = await student.save();
-    res.status(201).json(savedStudent);
+
+    await sendRegistrationEmail(email, firstName);
+
+    res.status(201).json({
+      message: "Student registered successfully, email sent!",
+      student: savedStudent
+    });
 
   } catch (err) {
     console.error(err);
@@ -44,9 +60,6 @@ export const registerStudent = async (req, res) => {
   }
 };
 
-/**
- * Get all students
- */
 export const getAllStudents = async (req, res) => {
   try {
     const students = await Student.find();
@@ -56,9 +69,6 @@ export const getAllStudents = async (req, res) => {
   }
 };
 
-/**
- * Get a single student by ID
- */
 export const getStudentById = async (req, res) => {
   try {
     const student = await Student.findById(req.params.id);
